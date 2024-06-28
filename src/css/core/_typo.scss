@@ -1,0 +1,463 @@
+:root {
+    --fs-h0: 12rem;
+    --lh-h0: .9em;
+
+    --fs-h1: 10rem;
+    --lh-h1: 1em;
+
+    --fs-h2: 8rem;
+    --lh-h2: .95em;
+
+    --fs-h3: 7.2rem;
+    --lh-h3: 1em;
+
+    --fs-h4: 6.4rem;
+    --lh-h4: .95em;
+
+    --fs-h5: 6rem;
+    --lh-h5: 1.3em;
+
+    --fs-h6: 3.2rem;
+    --lh-h6: 1.3em;
+
+    --fs-12: 1.2rem;
+    --lh-12: 1.6em;
+
+    --fs-14: 1.4rem;
+    --lh-14: 1.5em;
+
+    --fs-16: 1.6rem;
+    --lh-16: 1.4em;
+
+    --fs-18: 1.8rem;
+    --lh-18: 1.6em;
+
+    --fs-20: 2rem;
+    --lh-20: 1.4em;
+
+    --fs-24: 2.4rem;
+    --lh-24: 1.3em;
+
+    --fs-36: 3.6rem;
+    --lh-36: 1.2em;
+
+    @include md {
+        --fs-h0: 7.2rem;
+        --lh-h0: 1em;
+
+        --fs-h1: 5rem;
+
+        --fs-h2: 4.4rem;
+        --lh-h2: 1em;
+
+        --fs-h4: 3.6rem;
+        --lh-h4: 1.1em;
+
+        --fs-h5: 3.2rem;
+        --lh-h5: 1em;
+
+        --fs-h6: 2.4rem;
+        --lh-h6: 1em;
+
+        --fs-20: 1.6rem;
+        --ld-20: 1.4rem;
+
+    }
+    @include sm {
+        --fs-h0: 5rem;
+
+        --fs-h1: 4.4rem;
+
+        --fs-h2: 3.6rem;
+        --lh-h2: 1.1em;
+
+        --fs-h5: 3.2rem;
+        --lh-h5: 1.1em;
+
+        --fs-h4: 2.4rem;
+        --lh-h4: 1.3em;
+
+        --fs-20: 1.6rem;
+    }
+}
+
+$txtSizes: 12, 14, 16, 18, 20, 24, 36;
+
+.txt {
+    @each $size in $txtSizes {
+        &-#{$size} {
+            @include text(#{$size});
+        }
+    }
+    &-reg {
+        font-weight: 400 !important;
+    }
+    &-med {
+        font-weight: 500;
+    }
+    &-bold {
+        font-weight: 700;
+    }
+    &-hl {
+        color: rgba($cl-primary, 1);
+    }
+    &-link {
+        --line-spacing: 1rem;
+
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        color: rgba($cl-heading, 1);
+        &:before,
+        &:after {
+            pointer-events: none;
+            content: '';
+            position: absolute;
+            display: block;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background-color: currentColor;
+            @include transition(transform 0.5s cubic-bezier(0.59, 0.23, 0.22, 0.96));
+        }
+        &:before {
+            left: 0;
+        }
+        &:after {
+            pointer-events: none;
+            left: calc(-1 * var(--line-spacing));
+            @include transform(translateX(-100%));
+        }
+        @media (hover:hover) {
+            &:hover::before {
+                @include transform-origin(left);
+                @include transform(scaleX(1));
+            }
+            &:hover::before {
+                @include transform(translateX(calc(100% + var(--line-spacing))));
+            }
+            &:hover::after {
+                @include transform(translateX(var(--line-spacing)));
+            }
+        }
+    }
+    &-subscript {
+        vertical-align: sub;
+    }
+    &-btn {
+        // font-family: "Poppins";
+    }
+}
+
+@for $i from 0 through 6 {
+    h#{$i}, .h#{$i} {
+        color: $cl-heading;
+        font-weight: 500;
+        @include text(h#{$i});
+    }
+}
+
+body {
+    @include text(20);
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+        width: 100%;
+        height: auto
+    }
+    &-12 {
+        @include size(1.2rem);
+    }
+    &-16 {
+        @include size(1.6rem);
+    }
+    &-20 {
+        @include size(2rem);
+    }
+    &-22 {
+        @include size(2.2rem);
+    }
+    &-24 {
+        @include size(2.4rem);
+    }
+    &-28 {
+        @include size(2.8rem);
+    }
+    &-32 {
+        @include size(3.2rem);
+    }
+    &-64 {
+        @include size(6.4rem);
+    }
+    &-80 {
+        @include size(8rem);
+    }
+    &-48 {
+        @include size(4.8rem);
+    }
+    &-100 {
+        @include size(10rem);
+    }
+}
+
+.btn {
+    --border-radius: 1.5rem;
+
+    position: relative;
+    color: rgba($cl-white, 1);
+    font-weight: 500;
+    @include transition(color .3s ease-out);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include sm {
+        --border-radius: 1.2rem;
+    }
+
+    &:before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba($cl-primary, 1) 34%, rgba($cl-primary-li, 1) 100%);
+        box-shadow:  0px 0px 1rem .4rem rgba($cl-red, 0.51) inset;
+        border-radius: var(--border-radius);
+        z-index: 1;
+    }
+    &:after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        @include border-gradient(linear-gradient(180deg, rgba($cl-primary-hl, 1) 0%, rgba($cl-primary-hl, 0) 100%), var(--border-radius));
+    }
+    .btnoverlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        @include size(100%);
+        background: linear-gradient(180deg, #FF3F15 0%, #FF5D2C 34%, #FF9F2E 100%);
+        border-radius: var(--border-radius);
+        opacity: 0;
+        z-index: 2;
+        @include transition(opacity .6s cubic-bezier(0.34, 1.56, 0.64, 1));
+    }
+    &:hover {
+        .btnoverlay {
+            opacity: 1;
+            @include transition(opacity .4s cubic-bezier(0.33, 1, 0.68, 1));
+        }
+    }
+    .txt-btn {
+        position: relative;
+        display: inline-block;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        -webkit-backface-visibility: hidden;
+        padding: 2.4rem 2.7rem;
+        z-index: 3;
+
+        @include md {
+            padding: 2.4rem 2.7rem;
+        }
+    }
+    .txt-wrap {
+        border-radius: var(--border-radius);
+    }
+    &-border {
+        --border-radius: 2rem;
+        --border-padding: .5rem;
+
+        position: relative;
+        border: 1px solid rgba($cl-white, 0.1);
+        background-color: rgba($cl-white, 0.05);
+        padding: var(--border-padding);
+        border-radius: var(--border-radius);
+
+        &:before {
+            top: .5rem;
+            left: .5rem;
+            width: calc(100% - 1rem);
+            height: calc(100% - 1rem);
+        }
+        &:after {
+            pointer-events: none;
+            inset: .5rem;
+        }
+    }
+    &-white {
+        color: $cl-sub;
+        &:before {
+            background: $cl-heading;
+            box-shadow:  0px 0px 1rem .4rem rgba($cl-black, 0.12) inset;
+        }
+        &:after {
+            @include border-gradient(linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%), var(--border-radius));
+            opacity: .2;
+        }
+        .btnoverlay {
+            background: var(--dark, linear-gradient(180deg, #101010 10%, #212121 95%));
+        }
+        &:hover {
+            color: $cl-white;
+        }
+    }
+    &-dark {
+        &:before {
+            box-shadow: 0px 0px 1rem 0.4rem rgba($cl-white, 0.1) inset;
+            background: linear-gradient(180deg, rgba($cl-white, 1) 0%, rgba($cl-white, .2) 100%);
+            opacity: .15;
+            border-color: $cl-white;
+        }
+        &:after {
+            @include border-gradient(linear-gradient(180deg, rgba($cl-white, 1) 0%, rgba($cl-white, 0) 100%), 1.5rem);
+            opacity: .15;
+        }
+    }
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: none;
+}
+.img {
+    height: auto;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    pointer-events: none;
+    display: block;
+    outline: 0;
+    &-wrap {
+        position: relative;
+        &:after {
+            pointer-events: none;
+            content: '';
+            width: 100%;
+            height: 0;
+            padding-bottom: var(--aspect);
+            display: block;
+        }
+    }
+    &-height {
+        width: auto;
+        height: 100%;
+    }
+    &-fill {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+    &-abs {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+.vid-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.link-hidden {
+    display: none;
+}
+
+input, textarea {
+    appearance: none;
+    -webkit-appearance: none;
+}
+textarea {
+    resize: vertical;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    cursor: pointer;
+}
+button {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+.hover {
+    &-line {
+        --line-spacing: 1rem;
+
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        vertical-align: bottom;
+        &:before,
+        &:after {
+            pointer-events: none;
+            content: '';
+            position: absolute;
+            display: block;
+            bottom: 0.15em;
+            width: 100%;
+            height: 1px;
+            background-color: currentColor;
+
+            @include md {
+                bottom: 0;
+            }
+        }
+        &:before {
+            left: 0;
+        }
+        &:after {
+            left: calc(-1 * var(--line-spacing));
+            @include transform(translateX(-100%));
+        }
+        @media (hover: hover) {
+            &:hover::before {
+                @include transform(translateX(calc(100% + var(--line-spacing))) rotate(.01deg));
+                @include transition(transform .65s cubic-bezier(.6,0,.3,1));
+            }
+            &:hover::after {
+                @include transform(translateX(var(--line-spacing)) rotate(.01deg));
+                @include transition(transform .65s cubic-bezier(.6,0,.3,1) .15s);
+            }
+        }
+    }
+    &-un {
+        position: relative;
+        width: fit-content;
+        cursor: pointer;
+        color: currentColor;
+        &:before {
+            pointer-events: none;
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: 0.15em;
+            left: 0;
+            background-color: currentColor;
+            @include transform-origin(right);
+            @include transform(scaleX(0));
+            @include transition(0.6s transform cubic-bezier(0.66, 0, 0.15, 1));
+        }
+        @media (hover: hover) {
+            &:hover::before {
+                @include transform-origin(left);
+                @include transform(scaleX(1));
+            }
+        }
+    }
+}

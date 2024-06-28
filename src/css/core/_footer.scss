@@ -1,0 +1,278 @@
+.footer {
+    position: relative;
+    padding-top: 6rem;
+    overflow: hidden;
+    // padding-bottom: 2rem;
+
+    @include sm {
+        padding-top: 0;
+    }
+    &-cta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 2.8rem 0;
+        margin-bottom: 10.3rem;
+
+        @include md {
+            margin-bottom: 6rem;
+        }
+        @include sm {
+            margin-bottom: 4.7rem;
+        }
+        &-title {
+            color: rgba($cl-primary, 1);
+
+            @include sm {
+                --fs-h0: 4.4rem;
+                --ld-h0: 1em;
+            }
+        }
+        &-sub1 {
+            color: $cl-heading;
+            color: rgba($cl-white, 1);
+
+            @include md {
+                --fs-20: 1.8rem;
+                --ld-20: 1.2em;
+            }
+            @include sm {
+                --fs-20: 1.6rem;
+                --ld-20: 1.4em;
+                padding: 0 2.2rem;
+            }
+        }
+        &-sub2 {
+            color: rgba($cl-white, .7);
+
+            @include md {
+                --fs-20: 1.8rem;
+                --ld-20: 1.2em;
+            }
+            @include md {
+                --fs-20: 1.6rem;
+                --ld-20: 1.4em;
+            }
+        }
+        &-sub3 {
+            display: flex;
+            gap: 0 .5rem;
+            color: rgba($cl-white, .6);
+
+            @include sm {
+                --fs-18: 1.6rem;
+                --lh-18: 1.4em;
+            }
+            a {
+                color: $cl-heading;
+
+                @include md {
+                    font-weight: 600;
+                }
+            }
+        }
+        &-btn {
+            .txt-btn {
+                padding: 2.4rem 8.55rem;
+
+                @include md {
+                    --fs-18: 1.6rem;
+                    --ld-18: 1.4rem;
+                    padding: 1.9rem 8.55rem;
+                }
+                @include sm {
+                    padding: 1.4rem 3.2rem;
+                }
+            }
+        }
+    }
+    &-brands {
+        padding: 1.6rem 0;
+        margin-bottom: 2rem;
+
+        @include md {
+            margin-bottom: 3rem;
+        }
+        &-marquee {
+            display: flex;
+            align-items: center;
+            gap: 0 4rem;
+            padding: 0 2rem;
+            &-item {
+                @include size(10rem, auto)
+            }
+
+            @include sm {
+                gap: 0 1.6rem;
+                padding: 0 .8rem;
+            }
+        }
+    }
+    &-curtain {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // @include transform(translateY(px));
+        z-index: 1;
+
+        .footer-curtain-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            @include size(100%);
+            background: url("../../public/imgs/ft-line1.svg");
+            background-repeat: repeat-x;
+            background-size: auto 100%;
+
+            /* Test*/
+            display: none;
+        }
+        .footer-curtain-line2 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: url("../../public/imgs/ft-line2.svg");
+            background-repeat: repeat-x;
+            background-size: auto 100%;
+            z-index: 3;
+        }
+
+        /* Test*/
+        &--inner {
+            z-index: 1;
+            position: absolute;
+            top: calc((var(--zindex) - 1) * (100%/10));
+            display: block;
+            @include size(100%, calc(100% / 10));
+            background-color: rgba($cl-primary, 1);
+            transform-origin: top;
+
+            &:nth-of-type(n + 7) {
+                z-index: 4;
+            }
+        }
+
+        &-logo {
+            width: 36.7rem;
+            margin-bottom: 6.8rem;
+            z-index: 2;
+
+            @include md {
+                width: 28.9rem;
+                margin-bottom: 6.4rem;
+            }
+            @include sm {
+                width: 23.2rem;
+                margin-bottom: 6.4rem;
+            }
+        }
+        &-hide {
+            position: absolute;
+            opacity: 1;
+            bottom: 0;
+            height: 30%;
+            width: 100%;
+            background-color: rgba($cl-black, 1);
+            z-index: 3;
+        }
+    }
+    .footer-copyright-wrapper {
+        margin-top: -4.1rem;
+        padding-bottom: 2rem;
+        z-index: 1;
+
+        @include md {
+            padding-bottom: 2.6rem;
+            padding-top: 2.6rem;
+            background-color: rgba($cl-primary, 1);
+            margin-top: -3.5rem;
+        }
+        @include sm {
+            margin-top: 0;
+            padding-bottom: .6rem;
+            padding-top: .9rem;
+            background-color: rgba($cl-primary, 1);
+        }
+    }
+    &-premble {
+
+        @include md {
+            --fs-16: 1.4rem;
+            --lh-16: 1.3em;
+        }
+        @include sm {
+            --fs-16: 1.2rem;
+            --lh-16: 1.4em;
+            max-width: 19.3rem;
+            width: 100%;
+            text-align: center;
+            margin-bottom: .4rem;
+        }
+    }
+    &-copyright {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: $cl-white;
+
+        @include sm {
+            flex-direction: column;
+        }
+    }
+    &-links {
+        display: flex;
+        align-items: center;
+        gap: 4.4rem;
+
+        @include md {
+            gap: 2rem;
+        }
+        @include sm {
+            gap: 3.6rem;
+        }
+    }
+    &-link {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        @include md {
+            --fs-16: 1.4rem;
+            --lh-16: 1.3em;
+        }
+        @include sm {
+            --fs-16: 1.2rem;
+            --lh-16: 1.4em;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            right: -2.2rem;
+            background-color: rgba($cl-white, .2);
+            @include size(2px, 100%);
+
+            @include md {
+                right: -1.2rem;
+            }
+            @include sm {
+                right: -2rem;
+            }
+        }
+
+        &:last-child:after {
+            display: none;
+        }
+    }
+    &-overlap {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1rem;
+        background-color: rgba($cl-primary, 1);
+        z-index: 4;
+    }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "Subscription",
+  "version": "1.0.0",
+  "description": "",
+  "source": "./src/index.html",
+  "staticFiles": {
+    "staticOutPath": "./assets",
+    "staticPath": "./assets"
+  },
+  "targets": {},
+  "scripts": {
+    "clear": "rm -rf dist .parcel-cache",
+    "dev": "yarn clear && PARCEL_WORKERS=1 parcel -p 3000",
+    "build": "yarn clear && PARCEL_WORKERS=1 parcel build --no-cache --no-content-hash --public-url ./ --no-scope-hoist",
+    "server": "nodemon server.js",
+    "start": "concurrently \"yarn dev\" \"yarn server\""
+  },
+  "type": "commonjs",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.11.0",
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.3",
+    "parcel": "^2.11.0",
+    "parcel-reporter-static-files-copy": "^1.5.3",
+    "process": "^0.11.10",
+    "sharp": "^0.31.1",
+    "stripe": "^14.14.0"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead, Safari 14",
+  "dependencies": {
+    "@splinetool/loader": "^1.4.0",
+    "@splinetool/runtime": "^1.4.0",
+    "cors": "^2.8.5",
+    "three": "^0.164.1",
+    "three-orbitcontrols": "^2.110.3"
+  }
+}
